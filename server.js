@@ -22,6 +22,54 @@ app.get('/app/flip/', (req, res) => {
     res.status(200).json({"flip":flip})
 })
 
+app.get('/app/flips/:number', (req, res) => {
+    flips = coinFlips(req.params.number)
+    res.status(200).json({"raw":flips, "summary":countFlips(flips)})
+})
+
+app.get('/app/flip/call/heads', (req, res) => {
+
+})
+
+app.get('/app/flip/call/tails', (req, res) => {
+
+})
+
 function coinFlip() {
     return (Math.floor(Math.random() * 2) == 0) ? 'heads' : 'tails';
+}
+
+function coinFlips(flips) {
+    let flippedCoins = [];
+    if(flips < 1 || typeof flips == 'undefined'){
+      flips = 1
+    }
+    for(let i=0; i<flips; i++) {
+      flippedCoins.push(coinFlip())
+    }
+    return flippedCoins
+}
+
+function countFlips(array) {
+    let head = 0;
+    let tail = 0;
+    for(let i=0; i < array.length; i++) {
+      if(array[i] == 'heads') {
+        head++;
+      }
+      else {tail++;}
+    }
+    return {heads: head, tails: tail}
+}
+
+function flipACoin(call) {
+    let result = coinFlip()
+    let guess = ' '
+    if(result == call) {
+      guess = 'win' 
+    }
+    else {
+      guess = 'lose' 
+    }
+    return {call: call, flip: result, result: guess}
 }
