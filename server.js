@@ -12,11 +12,6 @@ app.get('/app/', (req, res) => {
     res.status(200).end('OK') 
 })
 
-app.use(function(req, res) {
-    res.status(404).send("404 NOT FOUND")
-    res.type("text/plain")
-})
-
 app.get('/app/flip/', (req, res) => {
     flip = coinFlip()
     res.status(200).json({"flip":flip})
@@ -75,3 +70,8 @@ function flipACoin(call) {
     }
     return {call: call, flip: result, result: guess}
 }
+
+app.use(function(req, res) {
+    res.status(404).send("404 NOT FOUND")
+    res.type("text/plain")
+})
