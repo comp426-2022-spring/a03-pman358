@@ -28,11 +28,13 @@ app.get('/app/flips/:number', (req, res) => {
 })
 
 app.get('/app/flip/call/heads', (req, res) => {
-
+    flip = flipACoin("heads")
+    res.status(200).json(flip)
 })
 
 app.get('/app/flip/call/tails', (req, res) => {
-
+    flip = flipACoin("tails")
+    res.status(200).json(flip)
 })
 
 function coinFlip() {
