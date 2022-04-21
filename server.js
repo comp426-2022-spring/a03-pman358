@@ -19,7 +19,8 @@ app.use(function(req, res) {
 
 app.get('/app/flip/', (req, res) => {
     flip = coinFlip()
-    res.status(200).end('{"flip":"' + flip + '"}')
+    res.status(200).send('{"flip":"' + flip + '"}')
+    res.type("text/plain")
 })
 
 function coinFlip() {
