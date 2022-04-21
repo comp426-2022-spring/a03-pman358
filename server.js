@@ -19,4 +19,9 @@ app.use(function(req, res) {
 
 app.get('/app/flip/', (req, res) => {
     flip = coinFlip()
+    res.status(200).end('{"flip":"' + flip + '"}')
 })
+
+function coinFlip() {
+    return (Math.floor(Math.random() * 2) == 0) ? 'heads' : 'tails';
+}
