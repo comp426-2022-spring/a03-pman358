@@ -9,7 +9,7 @@ const server = app.listen(port, () => {
 })
 
 app.get('/app/', (req, res) => {
-    res.status(200).end('OK')
+    res.status(200).end('OK') 
 })
 
 app.use(function(req, res) {
